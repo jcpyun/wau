@@ -32,13 +32,7 @@ ADMIN = (
 ALLOWED_HOSTS = ['*']
 
 
-###### EMAILS ######
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "cmujcp@gmail.com"
-EMAIL_HOST_PASSWORD = "canucks1234"
-EMAIL_PORT = 587
-EMAIL_USE_TLS= True
-####################
+
 
 
 # Application definition
