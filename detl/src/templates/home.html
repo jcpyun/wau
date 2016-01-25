@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+<body style="background-color:pink;">
 <h1> DETL WAU DETL </h1>
+<!--{{ instance }}
+{{ object_list }}
+{{ cur }}-->
+
+
+<!--<a href="{% url 'home' %}">click</a>-->
+<form method='POST' action=''> {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='I drank'>
+    
+</form>
+{% for obj in object_list %}<br/>
+
+Someone at detl drank @ {{ obj.timestamp}}
+{% endfor %} <br/>
+<!--<button onClick="myTimer = setInterval(myCounter, 1000)">Start counter!</button>
+
+<p id="demo">lol.</p>
+
+<button onClick="clearInterval(myTimer)">Stop counter!</button>
+
+<script>
+var c = 0;
+function myCounter() {
+    document.getElementById("demo").innerHTML = ++c;
+}
+</script> -->
+
+</body>
+</html>
