@@ -1,3 +1,7 @@
+{% load staticfiles %}
+{% include "head_css.html" %}
+{% include "javascript.html" %}
+
 <!DOCTYPE html>
 <html>
 <body>
@@ -8,28 +12,28 @@
 {{ cur }}-->
 
 
+<!--<button type="button" class="btn btn-default">Default</button>-->
+<!--<i class="fa fa-arrow-circle-down fa-4x text-primary"></i>-->
+
 <!--<a href="{% url 'home' %}">click</a>-->
 <form method='POST' action=''> {% csrf_token %}
     {{ form.as_p }}
-    <input type='submit' value='I drank'>
+    <input class="btn btn-danger btn-lg img-fade" type='submit' value='gulp'>
     
 </form>
-{% for obj in object_list %}<br/>
 
+Detl has been sober for {{ min_delt }} minutes and {{sec_delt }} seconds <br/>
+<br/>
+<br/>
+current time: {{ current }} <br/>
+
+<!--{% now "jS F Y H:i" %}-->
+Last time someone drank: {{ latest }} <br/>
+{% for obj in object_list %}<br/>
 Someone at detl drank @ {{ obj.timestamp}}
 {% endfor %} <br/>
-<!--<button onClick="myTimer = setInterval(myCounter, 1000)">Start counter!</button>
+{% include 'catparallax.html' %}
 
-<p id="demo">lol.</p>
-
-<button onClick="clearInterval(myTimer)">Stop counter!</button>
-
-<script>
-var c = 0;
-function myCounter() {
-    document.getElementById("demo").innerHTML = ++c;
-}
-</script> -->
 
 </body>
 </html>
