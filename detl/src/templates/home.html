@@ -4,9 +4,21 @@
 
 <!DOCTYPE html>
 <html>
+<style type="text/css">
+   .mobileHide { display: inline;}
+   /* Smartphone Portrait and Landscape */
+   @media only screen
+   and (min-device-width : 320px)
+   and (max-device-width : 480px){  .mobileHide { display: none;}}
+</style>
 <body>
 <body style="background-color:pink;">
 <center><h1> DETL WAU DETL </h1>
+
+
+<!--<a href="{% url 'my_login' %}">Login</a>-->
+
+
 <!--{{ instance }}
 {{ object_list }}
 {{ cur }}-->
@@ -16,6 +28,9 @@
 <!--<i class="fa fa-arrow-circle-down fa-4x text-primary"></i>-->
 
 <!--<a href="{% url 'home' %}">click</a>-->
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'my_logout' %}?next=/home/">Logout</a>
 <form method='POST' action=''> {% csrf_token %}
     {{ form.as_p }}
     <input class="btn btn-danger btn-lg img-fade" type='submit' value='gulp'>
@@ -28,6 +43,7 @@ Detl has been sober for {{ min_delt }} minutes and {{sec_delt }} seconds <br/>
 current time: {{ current }} <br/>
 
 <!--{% now "jS F Y H:i" %}-->
+{% now "H:i:s:A" %} <br/>
 Last time someone drank: {{ latest }} <br/>
 {% for obj in object_list %}<br/>
 Someone at detl drank @ {{ obj.timestamp}}
@@ -36,17 +52,17 @@ Someone at detl drank @ {{ obj.timestamp}}
 <head>
 <script>
             var chart;
-
+            var test= "{{ idtest }}";
             var chartData = [
                                 {
-                    "name": "Joe",
-                    "startTime": 10,
+                    "name": test,
+                    "startTime": 'test',
                     "endTime": 13,
                     "color": "#FF9E01"
                 },
                 {
                     "name": "Susan",
-                    "startTime": 11,
+                    "startTime": 11.5,
                     "endTime": 18,
                     "color": "#F8FF01"
                 },
@@ -99,13 +115,32 @@ Someone at detl drank @ {{ obj.timestamp}}
         </script>
 </head>
 
+
+
+<!--REST IS FOR AUTHENTICATION-->
+
+
+
+
 <body>
         <div id="chartdiv" style="width: 100%; height: 400px;"></div>
     </body>
+{% else %}
+<form class = 'navbar-form navbar-center' method = 'POST' action = '{% url "my_login" %}'>{% csrf_token %}
+            <div class= 'form-group'>
+              <input type= 'text' class = 'form-control' name = 'username' placeholder = 'Username' />
+            </div>
+            <div class = 'form-group'>
+              <input type= 'password' class = 'form-control' name = 'password' placeholder = 'Password' />
+            </div>
 
+            <button type= 'submit' class= 'btn btn-default'><i class="fa fa-user"></i> Login</button>
+</form>
+
+<div class="mobileHide">
 {% include 'catparallax.html' %}
-
-
+</div>
+{% endif %}
 </body>
 </center>
 
